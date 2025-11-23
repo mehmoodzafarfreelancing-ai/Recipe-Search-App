@@ -1,68 +1,85 @@
 // src/App.jsx
-import { useState, useEffect } from 'react';
-import './App.css'; // We'll add styles later
-
-// This is the (free) API we will use
-const API_URL = "https://www.themealdb.com/api/json/v1/1/search.php?s=chicken";
+import { useState, useEffect } from "react";
+import "./App.css";
 
 function App() {
-  // 1. Create state variables to store our data
-  const [recipes, setRecipes] = useState([]); // Will hold the array of recipes
-  const [isLoading, setIsLoading] = useState(true); // To show a loading message
-  const [error, setError] = useState(null); // To show an error message
+  const [recipes, setRecipes] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // 2. The 'useEffect' hook runs once when the component loads
-  useEffect(() => {
-    
-    // 3. We define an 'async' function to fetch the data
-    const fetchRecipes = async () => {
-      try {
-        // 'await' pauses the function until the data comes back
-        const response = await fetch(API_URL);
-        
-        // Check if the network request was successful
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
+  // NEW: State for the search bar
+  const [searchQuery, setSearchQuery] = useState("chicken");
 
-        const data = await response.json(); // Convert the response to JSON
-        
-        console.log(data); // <-- LOOK IN YOUR BROWSER CONSOLE
-        
-        setRecipes(data.meals); // Store the 'meals' array in our state
-        setIsLoading(false); // We're done loading
+  // We moved the fetch logic into a reusable function
+  const fetchRecipes = async (query) => {
+    setIsLoading(true);
+    setError(null); // Clear old errors
+    try {
+      // We inject the 'query' variable into the URL dynamically
+      const response = await fetch(
+        `https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`
+      );
 
-      } catch (e) {
-        // If anything went wrong...
-        console.error(e);
-        setError("Failed to fetch recipes. Please try again.");
-        setIsLoading(false); // Stop loading, even on error
+      if (!response.ok) throw new Error("Network response was not ok");
+
+      const data = await response.json();
+
+      // The API returns 'null' if it finds nothing, so we check for that
+      if (data.meals === null) {
+        setRecipes([]); // clear the list
+        setError("No recipes found. Try another ingredient!");
+      } else {
+        setRecipes(data.meals);
       }
-    };
+    } catch (err) {
+      console.error(err);
+      setError("Failed to fetch recipes.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-    fetchRecipes(); // Call the function
+  // Run the search ONCE when the app starts (defaulting to "chicken")
+  useEffect(() => {
+    fetchRecipes("chicken");
+  }, []);
 
-  }, []); // The empty array [] means "only run this effect once on load"
+  // NEW: Handle the form submission
+  const handleSearch = (e) => {
+    e.preventDefault(); // Stop the page from reloading
+    fetchRecipes(searchQuery); // Call the API with the text in the box
+  };
 
-  // 4. This is the UI (the "View")
   return (
-    <div>
+    <div className="app-container">
       <h1>Recipe Finder</h1>
-      
-      {/* Show a loading message */}
-      {isLoading && <p>Loading recipes...</p>}
-      
-      {/* Show an error message */}
-      {error && <p>{error}</p>}
-      
-      {/* Show the recipes once they are loaded */}
-      <ul>
+
+      {/* NEW: The Search Form */}
+      <form onSubmit={handleSearch} className="search-form">
+        <input
+          type="text"
+          placeholder="Enter ingredient (e.g., beef)..."
+          value={searchQuery}
+          // This updates the state every time you type a letter
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <button type="submit">Search</button>
+      </form>
+
+      {isLoading && <p>Loading...</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
+
+      {/* The Recipe Grid */}
+      <div className="recipe-grid">
         {recipes.map((recipe) => (
-          <li key={recipe.idMeal}>
-            {recipe.strMeal}
-          </li>
+          <div key={recipe.idMeal} className="recipe-card">
+            {/* Show image and title */}
+            <img src={recipe.strMealThumb} alt={recipe.strMeal} width="150" />
+            <h3>{recipe.strMeal}</h3>
+            <p>Category: {recipe.strCategory}</p>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
