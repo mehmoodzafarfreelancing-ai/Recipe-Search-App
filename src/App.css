@@ -1,0 +1,99 @@
+/* src/App.css */
+
+/* 1. Global Reset */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f4f9; /* Light grey background */
+  color: #333;
+}
+
+/* 2. Main Container - Centers the app */
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+h1 {
+  color: #ff6b6b; /* Salmon pink color */
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+/* 3. Search Form Styling */
+.search-form {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Space between input and button */
+}
+
+.search-form input {
+  padding: 12px 20px;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 25px; /* Rounded pill shape */
+  width: 300px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.search-form input:focus {
+  border-color: #ff6b6b; /* Highlight on click */
+}
+
+.search-form button {
+  padding: 12px 24px;
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-form button:hover {
+  background-color: #ff4757; /* Darker red on hover */
+}
+
+/* 4. The Magic Grid */
+.recipe-grid {
+  display: grid;
+  /* This line handles responsiveness automatically */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px; /* Space between cards */
+}
+
+/* 5. Recipe Card Styling */
+.recipe-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden; /* Keeps image inside the rounded corners */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Soft shadow */
+  transition: transform 0.2s; /* Smooth movement */
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px); /* Moves up slightly on hover */
+}
+
+.recipe-card img {
+  width: 100%; /* Image takes full width of card */
+  height: 200px;
+  object-fit: cover; /* Crops image nicely */
+}
+
+.recipe-card h3 {
+  margin: 15px 0 5px;
+  font-size: 1.2rem;
+  padding: 0 15px;
+}
+
+.recipe-card p {
+  color: #777;
+  padding: 0 15px 20px;
+  font-size: 0.9rem;
+}
