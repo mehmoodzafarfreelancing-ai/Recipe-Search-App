@@ -3,13 +3,26 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
+  // Make a box named recipes, start it empty ( [] ), and give me a button called setRecipes to fill it later.
   const [recipes, setRecipes] = useState([]);
+ // Make a box named isLoading, start it with true, and allow me to turn it to false later.
   const [isLoading, setIsLoading] = useState(true);
+ // make a box named error set it null and fill it if something goes wrong
   const [error, setError] = useState(null);
 
   // NEW: State for the search bar
+ // create a box named searchQuery, start it with string (chicken) and then allow me to chane it later using setSearchQuery.
   const [searchQuery, setSearchQuery] = useState("chicken");
 
+
+
+
+
+
+
+
+
+  
   // We moved the fetch logic into a reusable function
   const fetchRecipes = async (query) => {
     setIsLoading(true);
