@@ -24,15 +24,36 @@ function App() {
 
   
   // We moved the fetch logic into a reusable function
+ // This function is used where time is needed like (fetching data)
   const fetchRecipes = async (query) => {
+
+    // Set a box having button setIsLoading to true
     setIsLoading(true);
+    // Set a box having button setError to true
     setError(null); // Clear old errors
+
+
+
+
+
+    // Block of code where we try to do something
     try {
       // We inject the 'query' variable into the URL dynamically
+      // Wait for fetching to be finished before contuning but donot freeze anything else
       const response = await fetch(
         `https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`
       );
 
+
+
+
+
+
+
+
+
+
+      
       if (!response.ok) throw new Error("Network response was not ok");
 
       const data = await response.json();
