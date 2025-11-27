@@ -74,9 +74,21 @@ function App() {
         // Then set error (No recipes found. Try another ingredient!)
         setError("No recipes found. Try another ingredient!");
       } else {
-        // Paste meals in data to recepies box
+        // Show meals of data in recepies box
         setRecipes(data.meals);
       }
+
+
+
+
+
+
+
+
+
+
+
+      
     } catch (err) {
       console.error(err);
       setError("Failed to fetch recipes.");
