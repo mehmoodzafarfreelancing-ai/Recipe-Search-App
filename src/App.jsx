@@ -36,7 +36,7 @@ function App() {
 
 
 
-    // Block of code where we try to do something
+    // Block of code where we try to do something (that might fail)
     try {
       // We inject the 'query' variable into the URL dynamically
       // Wait for fetching to be finished before contuning but donot freeze anything else
@@ -50,19 +50,31 @@ function App() {
 
 
 
-
-
-
-      
+      // if the request send to the server is failed then show the error (Network response was not ok)
       if (!response.ok) throw new Error("Network response was not ok");
 
+      // Wait for response.json() to be ready when javascript object will be ready then save it inside data.
       const data = await response.json();
 
+
+
+
+
+
+
+
+
+
+
       // The API returns 'null' if it finds nothing, so we check for that
+      // If data returns no meals then:
       if (data.meals === null) {
+        // clear the list
         setRecipes([]); // clear the list
+        // Then set error (No recipes found. Try another ingredient!)
         setError("No recipes found. Try another ingredient!");
       } else {
+        // Paste meals in data to recepies box
         setRecipes(data.meals);
       }
     } catch (err) {
