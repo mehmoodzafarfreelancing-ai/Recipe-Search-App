@@ -93,19 +93,25 @@ function App() {
         />
         <button type="submit">Search</button>
       </form>
-
-
-
-      
+      {/* If isLoading is true then create a paragraph tag. */}
       {isLoading && <p>Loading...</p>}
+      If error(state variable) is null(has no value assigned) then create a
+      paragraph tag(style its color to red and show value of error in it)
       {error && <p style={{ color: "red" }}>{error}</p>}
       {/* The Recipe Grid */}
       <div className="recipe-grid">
+        {/* recipes.map for every recepie in the recepie array create a UI card  */}
+        {/* (recipe) => one item from the array (Object) */}
+        {/* (...) what to display for that recepie (JSX) */}
         {recipes.map((recipe) => (
+          // Give each card a unique key
           <div key={recipe.idMeal} className="recipe-card">
             {/* Show image and title */}
+            {/* Show recipe thumbnail picture from API */}
             <img src={recipe.strMealThumb} alt={recipe.strMeal} width="150" />
+            {/* Show recipe title from API */}
             <h3>{recipe.strMeal}</h3>
+            {/*    Show category of recipe from API */}
             <p>Category: {recipe.strCategory}</p>
           </div>
         ))}
