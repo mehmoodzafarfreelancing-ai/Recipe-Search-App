@@ -67,45 +67,38 @@ function App() {
     fetchRecipes("chicken");
   }, []);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
   // NEW: Handle the form submission
+  // Create a function and save it inside handleSearch
   const handleSearch = (e) => {
-    e.preventDefault(); // Stop the page from reloading
-    fetchRecipes(searchQuery); // Call the API with the text in the box
+    // When event happens then stop page from reloading
+    e.preventDefault();
+    // Call the function fetchRecipes and give it parameter (searchQuery).
+    fetchRecipes(searchQuery);
   };
 
   return (
     <div className="app-container">
       <h1>Recipe Finder</h1>
-
       {/* NEW: The Search Form */}
+      {/*Create search form and when the user submit the form (click search or press enter inside form)
+      then trigger handleSearch() function. */}
       <form onSubmit={handleSearch} className="search-form">
         <input
           type="text"
           placeholder="Enter ingredient (e.g., beef)..."
+          // Show what is inside usestate in the inputbox
           value={searchQuery}
-          // This updates the state every time you type a letter
+          //Every time we type a letter state is updated
           onChange={(e) => setSearchQuery(e.target.value)}
         />
         <button type="submit">Search</button>
       </form>
 
+
+
+      
       {isLoading && <p>Loading...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
-
       {/* The Recipe Grid */}
       <div className="recipe-grid">
         {recipes.map((recipe) => (
