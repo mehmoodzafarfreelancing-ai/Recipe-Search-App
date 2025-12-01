@@ -1,7 +1,7 @@
 // src/App.jsx
 import { useState, useEffect, useEffectEvent } from "react";
 import "./App.css";
-gdfgfrhyj
+
 function App() {
   // Make a box named recipes, start it empty ( [] ), and give me a button called setRecipes to fill it later.
   const [recipes, setRecipes] = useState([]);
