@@ -1,7 +1,7 @@
 // src/App.jsx
 import { useState, useEffect, useEffectEvent } from "react";
 import "./App.css";
-
+gdfgfrhyj
 function App() {
   // Make a box named recipes, start it empty ( [] ), and give me a button called setRecipes to fill it later.
   const [recipes, setRecipes] = useState([]);
@@ -48,7 +48,7 @@ function App() {
         setRecipes(data.meals);
       }
     } catch (err) {
-      // If try{} failed then run this catch block of code. (err) is the erroe/details of what failed
+      // If try{} failed then run this catch block of code. (err) is the error/details of what failed
       // Write error in console in red so that it can be seen easily
       console.error(err);
       // Set error to (Failed to fetch recipes)
@@ -92,11 +92,11 @@ function App() {
           onChange={(e) => setSearchQuery(e.target.value)}
         />
         <button type="submit">Search</button>
-      </form>
+      </form> 
       {/* If isLoading is true then create a paragraph tag. */}
       {isLoading && <p>Loading...</p>}
-      If error(state variable) is null(has no value assigned) then create a
-      paragraph tag(style its color to red and show value of error in it)
+      {/* If error(state variable) is null(has no value assigned) then create a
+      paragraph tag(style its color to red and show value of error in it) */}
       {error && <p style={{ color: "red" }}>{error}</p>}
       {/* The Recipe Grid */}
       <div className="recipe-grid">
