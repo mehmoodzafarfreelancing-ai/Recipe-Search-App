@@ -3,13 +3,16 @@
 /* 1. Global Reset */
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f4f4f9; /* Light grey background */
   color: #333;
 }
 
 /* 2. Main Container - Centers the app */
 .app-container {
+/*   display: flex;
+  flex-direction: column;
+  justify-content: center; */
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
@@ -46,7 +49,7 @@ h1 {
 
 .search-form button {
   padding: 12px 24px;
-  background-color: #ff6b6b;
+  background-color: #ed3737;
   color: white;
   border: none;
   border-radius: 25px;
@@ -56,7 +59,7 @@ h1 {
 }
 
 .search-form button:hover {
-  background-color: #ff4757; /* Darker red on hover */
+  background-color: #2fceff; /* Darker red on hover */
 }
 
 /* 4. The Magic Grid */
@@ -72,8 +75,9 @@ h1 {
   background: white;
   border-radius: 15px;
   overflow: hidden; /* Keeps image inside the rounded corners */
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Soft shadow */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow */
   transition: transform 0.2s; /* Smooth movement */
+  
 }
 
 .recipe-card:hover {
@@ -96,4 +100,18 @@ h1 {
   color: #777;
   padding: 0 15px 20px;
   font-size: 0.9rem;
+}
+.recipe-link {
+  padding: 12px 24px;
+  background-color: #ed3737;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none;
+}
+.recipe-link:hover {
+  background-color: #2fceff;
 }

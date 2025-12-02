@@ -112,7 +112,8 @@ function App() {
             {/* Show recipe title from API */}
             <h3>{recipe.strMeal}</h3>
             {/*    Show category of recipe from API */}
-            <p>Category: {recipe.strCategory}</p>
+            {<p>Category: {recipe.strCategory}</p>}
+            <a className="recipe-link" href={recipe.strSource} target="_blank" rel="noopener noreferrer">See recipe</a>
           </div>
         ))}
       </div>
