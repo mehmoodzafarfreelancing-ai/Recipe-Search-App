@@ -1,16 +1,20 @@
-# React + Vite
+# 🥗 React Recipe Finder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A dynamic, responsive recipe search application built with **React**, **Vite**, and **CSS Grid**. This app consumes the TheMealDB API to allow users to search for recipes, view ingredients, and watch cooking tutorials.
 
-Currently, two official plugins are available:
+🔴 **Live Demo:** [https://recipe-search-app-hazel.vercel.app/]
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
+- **Real-time API Data:** Fetches recipes dynamically based on user search.
+- **Smart Fallback:** Automatically detects missing source links and redirects users to YouTube tutorials instead.
+- **Responsive Design:** Uses CSS Grid to create a layout that adapts from mobile to desktop.
+- **Error Handling:** Gracefully manages failed network requests and "no results" states.
 
-## React Compiler
+## 🛠️ Tech Stack
+- **Frontend:** React.js (Hooks: useState, useEffect)
+- **Build Tool:** Vite
+- **Styling:** CSS3 (Flexbox & Grid)
+- **API:** TheMealDB
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 💡 What I Learned
+Building this project taught me how to handle **asynchronous data fetching** in React. I implemented **conditional rendering** to handle inconsistent API data (like missing recipe links) and used **local state** to manage loading spinners and error messages for a better user experience.
